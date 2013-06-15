@@ -39,11 +39,14 @@ First steps
 
 Look at the ./game subfolder there are three files:
 
-> game.css	- Stylesheet for your game
-> Story.php - All actions and game startup infos
-> view.php	- PHP/HTML view file with outputs for your game
+	game.css	- Stylesheet for your game
+	Story.php - All actions and game startup infos
+	view.php	- PHP/HTML view file with outputs for your game
 
 ... after download there is a simple test game where you can buy and drink beer.
+
+Try it here: http://bohuco.net/waiting-game-engine
+
 
 
 
