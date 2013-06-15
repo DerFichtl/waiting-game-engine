@@ -48,8 +48,8 @@
 			<section id="history">
 				<h2>Story so far:</h2>
 				<ul>
-					<? foreach(array_reverse($this->history) as $part):?>
-						<li><?=$part?></li>
+					<? foreach(array_reverse($this->history) as $action):?>
+						<li><?=$action['text']?> <span>Exp: <?=$action['addExperience']?></span></li>
 					<? endforeach; ?>
 				</ul>
 			</section>

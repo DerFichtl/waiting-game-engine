@@ -17,8 +17,8 @@ Class Story {
 	protected $_startMoney = 90;
 	
 	protected $_prehistory = array(
-		'Wait what happens ...
-		<br />Get items, make money, gain experience. The combination counts!'
+		'text' => 'Wait what happens ... <br />Get items, make money, gain experience. The combination counts!',
+		'addExperience' => 0
 	);
 	
 	// experience => level number
@@ -68,7 +68,7 @@ Class Story {
 			'needMoney' => 50,
 			'addExperience' => 10,
 		),
-		
+
 		'Drink beer' => array(
 			'texts' => array(
 				'You drunk a beer',
@@ -82,7 +82,7 @@ Class Story {
 		
 		'Go home you are drunk' => array(
 			'texts' => array(
-				'You are at home now.',
+				'Only loosers go home early, try again tomorrow.',
 			),
 			'needStatus' => array(
 				'Drink beer' => 5,
@@ -102,18 +102,41 @@ Class Story {
 			'addExperience' => -50,
 		),
 		
-		'Invite' => array(
+		'Invite with beer' => array(
 			'texts' => array(
-				'You treat some girls to a beer.',
-				'"Hey girls wanna drink this beers with me?"'
+				'You treat some girls to a beer. They refuse!',
+				'"Hey girls wanna drink this beers with me?" ... No! Girls don\'t like beer!'
 			),
 			'needItems' => array(
 				'Beer' => 3,
 			),
 			'needLevel' => 2,
-			'addExperience' => 100,
+			'addExperience' => -100,
 		),
 		
+		'Buy Cuba Libre' => array(
+			'texts' => array(
+				'You ordered a Cuba Libre at the bar.',
+				'"Please, bring me a Cuba Libre, Baby!"'
+			),
+			'addItems' => array(
+				'Cuba Libre' => 1,
+			),
+			'needLevel' => 2,
+			'needMoney' => 100,
+			'addExperience' => 50,
+		),
+
+		'Invite with Cuba Libre' => array(
+			'texts' => array(
+				'You treat some girls to a Cuba Libre. They like it!',
+			),
+			'needItems' => array(
+				'Cuba Libre' => 3,
+			),
+			'needLevel' => 2,
+			'addExperience' => 100,
+		),		
 	);
 	
 	

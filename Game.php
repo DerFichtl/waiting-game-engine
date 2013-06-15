@@ -41,7 +41,7 @@ Class Game {
 		$this->status = array();
 		
 		$story = new Story();
-		$this->history = $story->getPrehistory();
+		$this->history[] = $story->getPrehistory();
 		$this->money = $story->getStartMoney();
 		
 		$this->save();
@@ -65,7 +65,10 @@ Class Game {
 				}
 				
 				$this->experience += $action['addExperience'];
-				$this->history[] = $action['texts'][rand(0, count($action['texts'])-1)];
+				
+				$action['text'] = $action['texts'][rand(0, count($action['texts'])-1)];
+				$this->history[] = $action;
+				
 				$this->setItems($action);
 			}
 			
