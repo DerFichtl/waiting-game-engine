@@ -1,0 +1,16 @@
+@import url(http://fonts.googleapis.com/css?family=Merriweather+Sans);
+
+body { font-family:'Merriweather Sans', sans-serif; font-size:14px; background:#000; color:#fff; }
+h1 { float:left; background:#fff; color:#000; padding:5px 10px; }
+h2 { font-size:16px; margin:20px 0 10px 0; }
+p { margin:0; clear:both; }
+ul { margin:0; padding:0; }
+
+#game { float:left; width: 100%;}
+#history { clear:both; margin:20px 0; }
+#history li { padding-bottom:5px; margin-bottom:5px; border-bottom:1px solid #666; }
+#history p { margin-bottom:10px; }
+#actions { clear:both; margin:20px 0; }
+#items { clear:both; margin:20px 0; }
+#items li { list-style-type:none; float:left; padding:5px 10px 5px 0; font-size:12px; }
+#actions button { cursor:pointer; background:#fff; color:#000; border:none; padding:5px 10px; text-decoration:underline; }
