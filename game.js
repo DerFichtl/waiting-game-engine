@@ -5,19 +5,16 @@ var game = function(){
 		},
 		loop: function() {
 			$.get('?a=loop', function(res){
-				$('body').html(res);
+				document.getElementsByTagName('body')[0].innerHTML = res;
 				game.initLoop();
 			});
 		},
 		initLoop: function(){
 			$('button').click(function(evt){
-				
 				evt.preventDefault();
 				$.get('?a=' + $(evt.target).text(), function(res){
-					
-					$('body').html(res);
+					document.getElementsByTagname('body')[0].innerHTML = res;
 					game.initLoop();
-				
 				});
 			});
 		}

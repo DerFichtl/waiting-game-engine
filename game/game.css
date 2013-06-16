@@ -1,17 +1,22 @@
 @import url(http://fonts.googleapis.com/css?family=Merriweather+Sans);
 
-body { font-family:'Merriweather Sans', sans-serif; font-size:14px; background:#000; color:#fff; }
-h1 { float:left; background:#fff; color:#000; padding:5px 10px; }
-h2 { font-size:16px; margin:20px 0 10px 0; }
+body { font-family:'Merriweather Sans', sans-serif; font-size:14px; background:#fff; color:#000; }
 p { margin:0; clear:both; }
-ul { margin:0; padding:0; }
-a { color: #fff; }
+ul { margin:0; padding:0; list-style-type:none; }
+a { color:#333; }
 
-#game { float:left; width: 100%;}
-#history { clear:both; margin:20px 0; }
+#game { margin:auto; width:100%; max-width:600px; }
+header { margin:20px 0; }
+h1 { background:#fff; color:#000; margin:0; }
+h2 { float:left; font-size:14px; margin:5px 0; }
+#history { clear:both; padding-top:20px; }
 #history li { padding-bottom:5px; margin-bottom:5px; border-bottom:1px solid #666; }
 #history p { margin-bottom:10px; }
-#actions { clear:both; margin:20px 0; }
-#items { clear:both; margin:20px 0; }
-#items li { list-style-type:none; float:left; padding:5px 10px 5px 0; font-size:12px; }
-#actions button { cursor:pointer; background:#fff; color:#000; border:none; padding:5px 10px; text-decoration:underline; }
+#history li span { display:block; float:right; }
+#items { clear:both; padding-top:10px; }
+#items li { float:left; padding:5px 10px; font-size:12px; background:#eee; margin:0 0 10px 10px; }
+#actions { clear:both; padding-top:10px;  }
+#actions button { cursor:pointer; background:#000; color:#fff; font-size:12px; margin:0 0 10px 10px;
+    border-radius:3px; border:none; padding:5px 10px; text-decoration:underline; }
+#status { clear:both; padding-top:10px; }
+#status li { float:left; padding:5px 10px; font-size:12px; background:#eee; margin:0 0 10px 10px; }
