@@ -5,7 +5,7 @@
 	<head>
 		<title>Waiting Game Engine</title>
 		<meta charset='utf-8'> 
-		<link rel="stylesheet" href="game/game.css">
+		<link rel="stylesheet" href="default-game/game.css">
 		<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.0/jquery.min.js"></script>
 		<script src="game.js"></script>
 	</head>
@@ -48,7 +48,7 @@
 				<ul>
 					<li>Level: <?=$this->level?></li>
 					<li>Exp: <?=$this->experience?></li>
-					<li>Money: <?=number_format($this->money/100, 2, ',', '')?></li>
+					<li>Money: <?=number_format($this->money, 2, ',', '')?></li>
 				</ul>
 				<ul>
 					<? foreach($this->status as $status => $count):?>
@@ -60,7 +60,13 @@
 			<section id="history">
 				<ul>
 					<? foreach(array_reverse($this->history) as $action):?>
-						<li><?=$action['text']?> <span>Exp: <?=$action['addExperience']?></span></li>
+						<li>
+                            <?=$action['text']?>
+                            <? if(isset($action['randomItem'])): ?>
+                                <br />You got <?=$action['randomItem']?>
+                            <? endif; ?>
+                            <span>Exp: <?=$action['addExperience']?></span>
+                        </li>
 					<? endforeach; ?>
 				</ul>
 			</section>

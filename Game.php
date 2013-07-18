@@ -1,12 +1,11 @@
 <?php
 
-require_once 'game/Story.php';
-
 Class Game {
 	
 	protected $startDate = 0;
 	protected $lastLoopTime = 0;
-	
+	protected $gameName = '';
+
 	protected $runtime = 0;
 	protected $experience = 0;
 	protected $level = 1;
@@ -14,26 +13,43 @@ Class Game {
 	protected $history = array();
 	protected $items = array();
 	protected $status = array();
-	
+
 	protected $_labels = array(
 		'experience' => 'Experience',
 		'runtime' => 'Runtime',
 	);
-	
+
 	protected $_actions = array();
 	protected $_levels = array();
-	
-	public function __construct() {
+	protected $_story = null;
+
+	public function __construct($gameName = 'default-game') {
+        $this->gameName = $gameName;
 		$this->loadActions();
 	}
+
+    public function __get($key) {
+        if(isset($this->$key) && $key[0] != '_') {
+            return $this->$key;
+        }
+        return null;
+    }
 	
 	protected function loadActions() {
-		$story = new Story();
+
+        if(! file_exists($this->gameName.'/Story.php')) {
+            throw new Exception('Story file not found.');
+        }
+
+        require_once $this->gameName.'/Story.php';
+
+        $story = new Story();
+        $this->_story = $story;
 		$this->_actions = $story->getActions();
 		$this->_levels = $story->getLevels();
 	}
 	
-	public function start() {	
+	public function start() {
 		$this->reset();
 		$this->startDate = time();
 		$this->lastLoopTime = $this->startDate;
@@ -43,7 +59,7 @@ Class Game {
 		$story = new Story();
 		$this->history[] = $story->getPrehistory();
 		$this->money = $story->getStartMoney();
-		
+
 		$this->save();
 	}
 	
@@ -100,7 +116,7 @@ Class Game {
 		
 		if(isset($action['needItems']) && ! empty($action['needItems'])) {
 			foreach($action['needItems'] as $item => $count) {
-				if(! isset($this->items[$item]) || $this->items[$item] < $count) {
+                if(! isset($this->items[$item]) || $this->items[$item] < $count) {
 					$result = false;
 				}
 			}	
@@ -108,9 +124,23 @@ Class Game {
 		
 		if(isset($action['needStatus']) && ! empty($action['needStatus'])) {
 			foreach($action['needStatus'] as $status => $count) {
-				if(! isset($this->status[$status]) || $this->status[$status] < $count) {
-					$result = false;
-				}
+                if(is_numeric($count)) {
+                    $count = '='.$count;
+                }
+
+                if(strpos($count, '>') === 0) {
+                    if(! isset($this->status[$status]) || $this->status[$status] <= str_replace('>','',$count)) {
+                        $result = false;
+                    }
+                } elseif(strpos($count, '<') === 0) {
+                    if(isset($this->status[$status]) && $this->status[$status] >= str_replace('<','',$count)) {
+                        $result = false;
+                    }
+                } elseif(strpos($count, '=') === 0) {
+                    if(! isset($this->status[$status]) || $this->status[$status] != str_replace('=','',$count)) {
+                        $result = false;
+                    }
+                }
 			}	
 		}
 			
@@ -133,7 +163,13 @@ Class Game {
 				$this->items[$item] += $count;
 			}
 		}
-		
+
+        if(isset($action['addRandomItem'])) {
+            $randomKey = array_rand($action['addRandomItem']);
+            $this->items[$randomKey] += $action['addRandomItem'][$randomKey];
+            $this->history[count($this->history)-1]['randomItem'] = $randomKey;
+        }
+
 		if(isset($action['needStatus'])) {
 			foreach($action['needStatus'] as $status => $count) {
 				$this->status[$status] -= $count;
@@ -144,7 +180,7 @@ Class Game {
 	public function loop() {
 		
 		$this->runtime = time()-$this->startDate;
-		$this->money += $this->level*$this->level;
+		$this->money += $this->_story->getLoopMoney($this);
 		
 		$this->setLevel();
 		
@@ -164,7 +200,7 @@ Class Game {
 	public function draw($bodyOnly = true) {
 
 		ob_start();
-			include 'game/view.php';
+			include $this->gameName.'/view.php';
 			$html = ob_get_contents();
 		ob_end_clean();
 		
