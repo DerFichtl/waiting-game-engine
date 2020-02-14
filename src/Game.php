@@ -23,7 +23,8 @@ Class Game {
 	protected $_levels = array();
 	protected $_story = null;
 
-	public function __construct($gameName = 'default') {
+	public function __construct($gameName = 'default', $baseDir = '.') {
+		$this->baseDir = $baseDir;
         $this->gameName = $gameName;
 		$this->loadActions();
 	}
@@ -37,11 +38,11 @@ Class Game {
 	
 	protected function loadActions() {
 
-        if(! file_exists('Story.php')) {
+        if(! file_exists($this->baseDir.'/Story.php')) {
             throw new Exception('Story file not found.');
         }
 
-        require_once 'Story.php';
+        require_once $this->baseDir.'/Story.php';
 
         $story = new Story();
         $this->_story = $story;
@@ -203,7 +204,7 @@ Class Game {
 	public function draw($bodyOnly = true) {
 
 		ob_start();
-			include 'view.php';
+			include $this->baseDir.'/view.php';
 			$html = ob_get_contents();
 		ob_end_clean();
 		
