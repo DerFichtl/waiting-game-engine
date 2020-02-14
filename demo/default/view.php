@@ -5,9 +5,9 @@
 	<head>
 		<title>Waiting Game Engine</title>
 		<meta charset='utf-8'> 
-		<link rel="stylesheet" href="default-game/game.css">
+		<link rel="stylesheet" href="/game.css">
 		<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.0/jquery.min.js"></script>
-		<script src="game.js"></script>
+		<script src="/game.js"></script>
 	</head>
 	<body>
 
