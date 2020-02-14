@@ -5,7 +5,7 @@ var game = function(){
 		},
 		loop: function() {
 			$.get('?a=loop', function(res){
-				document.getElementsByTagName('body')[0].innerHTML = res;
+				document.getElementById('game').parentElement.innerHTML = res;
 				game.initLoop();
 			});
 		},
@@ -13,7 +13,7 @@ var game = function(){
 			$('button').click(function(evt){
 				evt.preventDefault();
 				$.get('?a=' + $(evt.target).text(), function(res){
-					document.getElementsByTagname('body')[0].innerHTML = res;
+					document.getElementById('game').parentElement.innerHTML = res;
 					game.initLoop();
 				});
 			});

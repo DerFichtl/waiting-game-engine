@@ -37,15 +37,17 @@ Features
 First steps
 -----------
 
-Look at the ./game subfolder there are three files:
+Look at the ./demo/default subfolder there are three files:
 
+	game.js     - Simple reloader
 	game.css	- Stylesheet for your game
-	Story.php - All actions and game startup infos
+	index.php   - Init the game
 	view.php	- PHP/HTML view file with outputs for your game
+	Story.php   - All actions and game startup infos
 
-... after download there is a simple test game where you can buy and drink beer.
+... after download there is a simple test game where you can fly a spaceship.
 
-Try it here: http://bohuco.net/waiting-game-engine
+Try it here: https://m-f.host
 
 License
 -------

@@ -1,4 +1,4 @@
-<? if(! $bodyOnly): ?>
+<?php if(! $bodyOnly): ?>
 
 <!DOCTYPE html>
 <html>
@@ -8,21 +8,10 @@
 		<link rel="stylesheet" href="default-game/game.css">
 		<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.0/jquery.min.js"></script>
 		<script src="game.js"></script>
-        <script type="text/javascript">
-            var _gaq = _gaq || [];
-            _gaq.push(['_setAccount', 'UA-682459-4']);
-            _gaq.push(['_trackPageview']);
-
-            (function() {
-                var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-                ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-                var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-            })();
-        </script>
 	</head>
 	<body>
 
-<? endif; ?>
+<?php endif; ?>
 	
 		<div id="game">
 			
@@ -32,27 +21,27 @@
 					View source code on GitHub</a></p>
 			</header>
 			
-			<? if($this->_actions): ?>
+			<?php if($this->_actions): ?>
 				<section id="actions">
 					<h2>Actions:</h2>
-					<? foreach($this->_actions as $actionId => $action):?>
-						<? if($this->checkAction($action)): ?>
+					<?php foreach($this->_actions as $actionId => $action):?>
+						<?php if($this->checkAction($action)): ?>
 							<button><?=$actionId?></button>
-						<? endif; ?>
-					<? endforeach; ?>
+						<?php endif; ?>
+					<?php endforeach; ?>
 				</section>
-			<? endif; ?>
+			<?php endif; ?>
 				
-			<? if($this->items): ?>
+			<?php if($this->items): ?>
 				<section id="items">
 					<h2>Items:</h2>
 					<ul>
-						<? foreach($this->items as $item => $count):?>
+						<?php foreach($this->items as $item => $count):?>
 							<li><?=$item?>: <?=$count?></li>
-						<? endforeach; ?>
+						<?php endforeach; ?>
 					</ul>
 				</section>
-			<? endif; ?>
+			<?php endif; ?>
 			
 			<section id="status">
 				<h2>Status:</h2>
@@ -62,32 +51,32 @@
 					<li>Money: <?=number_format($this->money, 2, ',', '')?></li>
 				</ul>
 				<ul>
-					<? foreach($this->status as $status => $count):?>
+					<?php foreach($this->status as $status => $count):?>
 						<li><?=$status?>: <?=$count?></li>
-					<? endforeach; ?>
+					<?php endforeach; ?>
 				</ul>
 			</section>
 
 			<section id="history">
 				<ul>
-					<? foreach(array_reverse($this->history) as $action):?>
+					<?php foreach(array_reverse($this->history) as $action):?>
 						<li>
                             <?=$action['text']?>
-                            <? if(isset($action['randomItem'])): ?>
+                            <?php if(isset($action['randomItem'])): ?>
                                 <br />You got <?=$action['randomItem']?>
-                            <? endif; ?>
+                            <?php endif; ?>
                             <span>Exp: <?=$action['addExperience']?></span>
                         </li>
-					<? endforeach; ?>
+					<?php endforeach; ?>
 				</ul>
 			</section>
 			
 		</div>
 		
-<? if(! $bodyOnly): ?>		
+<?php if(! $bodyOnly): ?>		
 
 	</body>
 </html>
 
-<? endif; ?>
+<?php endif; ?>
 

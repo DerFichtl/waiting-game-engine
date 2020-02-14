@@ -5,8 +5,8 @@ error_reporting(E_ALL);
 
 session_start();
 
-require_once 'Game.php';
-$game = new Game('default-game');
+require_once __DIR__.'/../../src/Game.php';
+$game = new Game('default');
 
 if(isset($_GET['a']) && ! empty($_GET['a'])) {
 	$game->load();

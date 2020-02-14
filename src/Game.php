@@ -23,7 +23,7 @@ Class Game {
 	protected $_levels = array();
 	protected $_story = null;
 
-	public function __construct($gameName = 'default-game') {
+	public function __construct($gameName = 'default') {
         $this->gameName = $gameName;
 		$this->loadActions();
 	}
@@ -37,11 +37,11 @@ Class Game {
 	
 	protected function loadActions() {
 
-        if(! file_exists($this->gameName.'/Story.php')) {
+        if(! file_exists('Story.php')) {
             throw new Exception('Story file not found.');
         }
 
-        require_once $this->gameName.'/Story.php';
+        require_once 'Story.php';
 
         $story = new Story();
         $this->_story = $story;
@@ -165,7 +165,10 @@ Class Game {
 		}
 
         if(isset($action['addRandomItem'])) {
-            $randomKey = array_rand($action['addRandomItem']);
+			$randomKey = array_rand($action['addRandomItem']);
+			if(! isset($this->items[$randomKey])) {
+				$this->items[$randomKey] = 0;
+			}
             $this->items[$randomKey] += $action['addRandomItem'][$randomKey];
             $this->history[count($this->history)-1]['randomItem'] = $randomKey;
         }
@@ -200,7 +203,7 @@ Class Game {
 	public function draw($bodyOnly = true) {
 
 		ob_start();
-			include $this->gameName.'/view.php';
+			include 'view.php';
 			$html = ob_get_contents();
 		ob_end_clean();
 		
