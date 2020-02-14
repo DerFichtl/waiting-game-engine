@@ -103,6 +103,19 @@ Class Story {
             'addExperience' => 100,
         ),
 
+        'Land on Station' => array(
+            'texts' => array(
+                'Land on Station',
+            ),
+            'needStatus' => array(
+                'Take off' => 1,
+            ),
+            'needItems' => array(),
+            'needMoney' => 100,
+            'needLevel' => 1,
+            'addExperience' => 100,
+        ),
+
         'Buy mining laser' => array(
             'texts' => array(
                 'You talked to your local ship dealer and bought a cheap mining laser.',
