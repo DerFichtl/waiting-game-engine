@@ -50,10 +50,6 @@ Look at the ./demo/default subfolder there are three files:
 License
 -------
 
-All code in this repository is CC-BY
-Share / Remix / Commercial if Attribution
-
-* http://creativecommons.org/licenses/by/3.0/
-* http://creativecommons.org/licenses/by/3.0/de/
+see LICENSE
 
 
