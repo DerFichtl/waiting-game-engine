@@ -47,8 +47,6 @@ Look at the ./demo/default subfolder there are three files:
 
 ... after download there is a simple test game where you can fly a spaceship.
 
-Try it here: https://m-f.host
-
 License
 -------
 
